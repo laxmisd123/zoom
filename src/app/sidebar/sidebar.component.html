@@ -1,0 +1,6 @@
+<p-sidebar [(visible)]="visibleSidebar" [baseZIndex]="10000" class="bg-dark" (onclick)="sidebar()">
+  <h5 class="font-weight-bold bg-info text-light">Industrial Management</h5>
+  <a routerLink='/home' routerLinkActive="router-link-active"  class="font-weight-bold" (click)="visibleSidebar = false"><i class="fa fa-home"></i>Home</a><br><br>
+  <a routerLink='/about' routerLinkActive="router-link-active"  class="font-weight-bold" (click)="visibleSidebar = false"><i class="fa fa-newspaper-o"></i>About Us</a><br><br>
+  <a routerLink='/contact' routerLinkActive="router-link-active"  class="font-weight-bold" (click)="visibleSidebar = false"><i class="fa fa-phone-square"></i>Contact Us</a><br><br>
+</p-sidebar>

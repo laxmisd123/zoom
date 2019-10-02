@@ -1,0 +1,155 @@
+<p-toast key="key1"></p-toast>
+<div>
+<h3 class="text-dark">Welcome to HomePage</h3>
+<button (click)="onAddClick(Add)" class="btn btn-outline-primary btn-sm">Add Article</button>
+</div>
+<br>
+<label><input #f type="text" >&nbsp;&nbsp;<button  (click)="onClickSearch(f.value)" class="btn btn-outline-secondary btn-sm">search</button></label>
+
+<br>
+<table class="table text-dark">
+
+      <tr class="bg-light">
+          <th>Article Id</th>
+          <th>Article Name</th>
+          <th>CreatedBy Name</th>
+          <th>Creadted Date</th>
+          <th>Category Id</th>
+          <th>Category Name</th>
+          <th>Action</th>
+          <th>Action</th>
+      </tr>
+    <tbody *ngFor="let item of all_articles; let i=index">
+      <tr>
+        <td>{{item.articleId}}</td>
+        <td>{{item.articleName}}</td>
+        <td>{{item.createdByName}}</td>
+        <td>{{item.createdDate}}</td>
+        <td>{{item.categoryId}}</td>
+        <td>{{item.categoryName}}</td>
+        <td><button class="btn btn-info btn-sm" (click)="onEditClick(Edit,i)" ><i class="fa fa-pencil"></i>Edit</button>&nbsp;&nbsp;</td>
+        <td><button class="btn btn-secondary btn-sm" (click)="onReadClick(Read,item)" >ReadMore</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <ngb-pagination  [collectionSize]="totalItem"  [maxSize]="5" [rotate]="true" [(page)]="Page"  (pageChange)="loadPage([Page])"  [boundaryLinks]="true"></ngb-pagination>
+  <ng-template #Add let-modal>
+    <br>
+  <form [formGroup]="kb" class="container" (ngSubmit)="onArticleSave(kb.value)">
+      <h4>Add Article</h4>
+    <div class="container">
+          <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-6">
+              <label><b>Article Name</b></label>
+              <input formControlName="articleName" type="text" class="form-control" >
+              <label *ngIf="kb.get('articleName').hasError('required') && !kb.get('content').pristine" class="alert alert-danger">Article name is Required!!!!!</label>
+            </div>
+          </div>
+          </div>
+          <div class="container">
+                <div class="row">
+                  <div class="col-xs-6 col-sm-4 col-md-6">
+                      <label><b>Category</b></label>
+                      <input formControlName="categoryId" type="text" class="form-control" >
+                      <label *ngIf="kb.get('categoryId').hasError('required')  && !kb.get('content').pristine" class="alert alert-danger">Catogory Id is Required!!!!!</label>
+                    </div>
+                  </div>
+                </div>
+          <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-4 col-md-6">
+                          <label><b>Description</b></label>
+                          <input formControlName="content" type="text"  class="form-control">
+                          <label *ngIf="kb.get('content').hasError('required')  && !kb.get('content').pristine" class="alert alert-danger">Description is Required!!!!!</label>
+                        </div>
+                      </div>
+                    </div>
+              <br>
+  <div class="container" >
+    <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-6">
+            <button class="btn btn-success btn-sm" type="submit">Submit</button>&nbsp;&nbsp;
+            <button class="btn btn-warning btn-sm" type="button" (click)="modal.close('Save click')">close</button>
+          </div>
+    </div>
+  </div><br>
+  <br>
+    </form>
+  </ng-template>
+  <ng-template #Edit let-modal>
+    <br>
+    <form [formGroup]="kb" class="container" (ngSubmit)="UpdateArticles(kb.value)">
+    <h4>Edit Article</h4>
+      <div class="container">
+            <div class="row">
+              <div class="col-xs-6 col-sm-4 col-md-6">
+                <label><b>Article Name</b></label>
+                <input formControlName="articleName" type="text" class="form-control" >
+                <label *ngIf="kb.get('articleName').hasError('required') && !kb.get('content').pristine" class="alert alert-danger">Article name is Required!!!!!</label>
+              </div>
+            </div>
+            </div>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-md-6">
+                        <label><b>Category</b></label>
+                        <input formControlName="categoryId" type="text" class="form-control" >
+                        <label *ngIf="kb.get('categoryId').hasError('required') && !kb.get('content').pristine" class="alert alert-danger">Catogory Id is Required!!!!!</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-xs-6 col-sm-4 col-md-6">
+                            <label><b>Description</b></label>
+                            <input formControlName="content" type="text" class="form-control">
+                            <label *ngIf="kb.get('content').hasError('required') && !kb.get('content').pristine" class="alert alert-danger">Description is Required!!!!!</label>
+                          </div>
+                        </div>
+                      </div>
+                <br>
+    <div class="container">
+      <div class="row">
+          <div class="col-xs-6 col-sm-4 col-md-6">
+              <button class="btn btn-success btn-sm" type="submit">Submit</button>&nbsp;&nbsp;
+              <button class="btn btn-warning btn-sm" type="button" (click)="modal.close('Save click')">close</button>
+            </div>
+      </div>
+    </div><br>
+    <br>
+      </form>
+    </ng-template>
+    <ng-template #Read let-modal>
+        <br>
+        <h3 style="text-align: left">Read More</h3>
+        <div  class="container-fluid">
+        <div> <p>{{arrdata?.articleName}}</p></div>
+         <div><p>{{arrdata?.createdBy}}</p></div>
+         <div> <p [innerHTML]='arrdata?.content'></p></div>
+         <button class="btn btn-secondary btn-sm" type="button" (click)="modal.close('Save click')">close</button>
+
+        </div>
+        <br>
+      </ng-template>
+
+
+
+<!--
+      <ng-template  #Read let-modal>
+      <div class="card bg-secondary" style='width: 80%;margin-left: 85px;margin-top: 20px; margin-bottom: 20px'>
+        <div class="card-header">
+            Readmore
+        </div>
+        <div class="card-body"  class="container">
+          <h5 class="card-title">{{arrdata?.articleName}}</h5>
+          <p class="card-title">{{arrdata?.createdBy}}</p>
+          <p class="card-text" [innerHTML]='arrdata?.content'></p>
+        </div>
+        <div class="card-footer text-muted">
+          <button class="btn btn-info btn-sm" type="button" (click)="modal.close('Save click')">close</button>
+        </div>
+      </div>
+    </ng-template> -->
+
+
+
