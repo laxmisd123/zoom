@@ -11,7 +11,6 @@ export class SidebarComponent implements OnInit {
   visibleSidebar;
   ngOnInit() {
     this.visibleSidebar = false;
-
     this.sidebar();
 
     }
