@@ -5,11 +5,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ArticleService {
-url = 'https://0b22da3c.ngrok.io/api/KB/GetArticles?getall=0&categ=';
-url1 = 'https://0b22da3c.ngrok.io/api/KB/InsertUpdateKBAricles';
-url2 = 'https://0b22da3c.ngrok.io/api/KB/GetReadArticle?ArticleId=';
-paginate = 'https://0b22da3c.ngrok.io/api/KB/GetArticles?getall=0&categ=&';
-search = "https://0b22da3c.ngrok.io/api/KB/GetArticles?getall=0&SearchString=";
+url = 'https://2612f72e.ngrok.io/api/KB/GetArticles?getall=0&categ=';
+url1 = 'https://2612f72e.ngrok.io/api/KB/InsertUpdateKBAricles';
+url2 = 'https://2612f72e.ngrok.io/api/KB/GetReadArticle?ArticleId=';
+paginate = 'https://2612f72e.ngrok.io/api/KB/GetArticles?getall=0&categ=&';
+search = 'https://2612f72e.ngrok.io/api/KB/GetArticles?getall=0&SearchString=';
 concat: string;
 
   constructor(private _http: HttpClient) { }

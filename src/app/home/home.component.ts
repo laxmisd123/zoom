@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbModal, ModalDismissReasons,NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Industry } from '../industry';
 import { ArticleService } from '../myapp.service';
 import {MessageService, Message} from 'primeng/api';
@@ -22,23 +22,22 @@ export class HomeComponent implements OnInit {
   article_id1: any;
   closeResult: string;
   arrdata: Industry;
-msgs: Message;
-arr3:Pagerinfo[];
-
-pageSize:string;
-totalItem:string;
-totalPages:string;
-Page:number=1;
-arr2:Industry[];
-page:Pagerinfo;
+  msgs: Message;
+  arr3: Pagerinfo[];
+  pageSize: string;
+  totalItem: string;
+  totalPages: string;
+  Page: number = 1;
+  arr2: Industry[];
+  page: Pagerinfo;
 
   constructor(private _data: ArticleService,
-     private fb: FormBuilder,
-      private modalService: NgbModal,
-      private messages: MessageService,
-      private config: NgbModalConfig) {
-    config.backdrop = 'static';
-    config.keyboard = false;
+              private fb: FormBuilder,
+              private modalService: NgbModal,
+              private messages: MessageService,
+              private config: NgbModalConfig) {
+        config.backdrop = 'static';
+        config.keyboard = false;
   }
 
   ngOnInit() {
@@ -91,21 +90,15 @@ private getDismissReason(reason: any): string {
   }
   }
 onArticleSave(items) {
-  this._data.addIndustry(items
-
-  ).subscribe(
+  this._data.addIndustry(items).subscribe(
    (x: any) => {
-    this.messages.add({key: 'key1',severity: 'success', summary: 'Service Message', detail: 'Added Successfully'});
+    this.messages.add({key: 'key1', severity: 'success', summary: 'Service Message', detail: 'Added Successfully'});
     this.modalService.dismissAll();
     }
   );
-  console.log('completed');
-
 }
 
   onEditClick(Edit, item) {
-
-
     this.kb.patchValue({
       articleId: this.all_articles[item].articleId,
       articleName: this.all_articles[item].articleName,
@@ -127,12 +120,11 @@ onArticleSave(items) {
       });
 }
 UpdateArticles(item) {
-  console.log(item);
   console.log(item.articleId);
   this.all_articles['kbArticles'] = item;
   this._data.editIndustry(item).subscribe(
     (x: any) => {
-      this.messages.add({key: 'key1',severity: 'success', summary: 'Success', detail: 'Edited Successfully'});
+      this.messages.add({key: 'key1', severity: 'success', summary: 'Success', detail: 'Edited Successfully'});
 
       this._data.getAllkbArticles().subscribe(
         (data: Industry[]) => {
@@ -140,7 +132,6 @@ UpdateArticles(item) {
           this.kb.reset();
           console.log(this.arr);
           this.all_articles = this.arr['kbArticles'];
-
           console.log(this.all_articles);
           this.modalService.dismissAll();
 
@@ -150,22 +141,19 @@ UpdateArticles(item) {
   );
 }
 onReadClick(Read, item) {
-
-
   this.modalService.open(Read, {
-    size:'lg'
+    size: 'lg'
   });
   this._data.onReadIndustry(item.articleId).subscribe(
     (x: any) => {
       this.arrdata = x;
-
     }
   );
 }
 getPageInformation(){
   this._data.getAllkbArticles().subscribe(
-    (data:Industry[])=>{
-      this.arr2=data;
+    (data: Industry[]) => {
+      this.arr2 = data;
       this.page = data['pagerInfo'];
       console.log(this.page);
       this.totalItem = this.page.totalItems;
@@ -175,13 +163,12 @@ getPageInformation(){
     }
   );
 }
-loadPage(number:number){
-  number=this.Page;
+loadPage(number: number) {
+  number = this.Page;
   console.log(number);
-  if(number!=0){
+  if (number !== 0){
     this._data.getPageByNumber(number).subscribe(
-      (x:any)=>{
-        // console.log('hhh');
+      (x: any) => {
         this.arr3 = x;
         console.log(this.arr3);
         this.all_articles = this.arr3['kbArticles'];
@@ -198,19 +185,13 @@ onClickSearch(value) {
         this.arr = data;
         this.all_articles = this.arr['kbArticles'];
       });
-  }
-  else
-   {
+  } else {
     this._data.getAllkbArticles().subscribe(
 
       (data: Industry[]) => {
         this.arr = data;
         console.log(this.arr);
-        // var arr = _.values(arr);
         this.all_articles = this.arr['kbArticles'];
-        // console.log(this.article[1]);
-        // this.article=this.artcle;
-        // console.log(this.article[1]);
       });
   }
 }

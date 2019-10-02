@@ -8,16 +8,18 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
 
   constructor() { }
-  visibleSidebar;
+  visibleSidebar: any;
   ngOnInit() {
-    this.visibleSidebar = false;
     this.sidebar();
 
     }
-    sidebar(){
+    sidebar() {
+
 this.visibleSidebar = true;
-      this.ngOnInit();
+this.ngOnInit();
+// console.log("dcsddsd");
  }
+
 
     }
 

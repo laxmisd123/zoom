@@ -20,7 +20,7 @@ ngOnInit(){
   }
 visibleSidebar1(){
   this.child.sidebar();
-  this.visibleSidebar=false;
+  // this.visibleSidebar=false;
 
 
 
