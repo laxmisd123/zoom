@@ -15,7 +15,7 @@ import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SidebarModule} from 'primeng/sidebar';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarComponent } from './menu/sidebar/sidebar.component';
 
 
 
@@ -44,7 +44,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 
   ],
-  providers: [ArticleService,MessageService],
+  providers: [ArticleService, MessageService],
   bootstrap: [AppComponent]
 
 })

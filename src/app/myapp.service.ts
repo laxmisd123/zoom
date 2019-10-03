@@ -5,37 +5,37 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ArticleService {
-url = 'https://2612f72e.ngrok.io/api/KB/GetArticles?getall=0&categ=';
-url1 = 'https://2612f72e.ngrok.io/api/KB/InsertUpdateKBAricles';
-url2 = 'https://2612f72e.ngrok.io/api/KB/GetReadArticle?ArticleId=';
-paginate = 'https://2612f72e.ngrok.io/api/KB/GetArticles?getall=0&categ=&';
-search = 'https://2612f72e.ngrok.io/api/KB/GetArticles?getall=0&SearchString=';
+url = 'https://7b88bccc.ngrok.io/api/KB/GetArticles?getall=0&categ=';
+url1 = 'https://7b88bccc.ngrok.io/api/KB/InsertUpdateKBAricles';
+url2 = 'https://7b88bccc.ngrok.io/api/KB/GetReadArticle?ArticleId=';
+paginate = 'https://7b88bccc.ngrok.io/api/KB/GetArticles?getall=0&categ=&';
+search = 'https://7b88bccc.ngrok.io/api/KB/GetArticles?getall=0&SearchString=';
 concat: string;
 
-  constructor(private _http: HttpClient) { }
+  constructor(private http: HttpClient) { }
   getAllkbArticles() {
-    return this._http.get(this.url);
+    return this.http.get(this.url);
   }
-  addIndustry(item) {
+  addIndustry(item: number) {
     const body = JSON.stringify(item);
     const head = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.post(this.url1, body, { headers: head });
+    return this.http.post(this.url1, body, { headers: head });
   }
-  editIndustry(item) {
+  editIndustry(item: number) {
     const body = JSON.stringify(item);
     const head = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.post(this.url1 , body, { headers: head });
+    return this.http.post(this.url1 , body, { headers: head });
   }
-  onReadIndustry(id) {
+  onReadIndustry(id: number) {
 
-    return this._http.get(this.url2 + id);
+    return this.http.get(this.url2 + id);
   }
-  getPageByNumber(num) {
-      this.concat = 'categ='+'&Page='+ num;
-      return this._http.get(this.paginate + this.concat);
+  getPageByNumber(num: number) {
+      this.concat = 'categ=' + '&Page=' +  num;
+      return this.http.get(this.paginate + this.concat);
   }
-  getSearchById(value) {
-    return this._http.get(this.search + value);
+  getSearchById(value: string) {
+    return this.http.get(this.search + value);
   }
 }
 

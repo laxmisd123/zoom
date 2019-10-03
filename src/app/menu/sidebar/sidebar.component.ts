@@ -1,26 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  visibleSidebar: boolean;
 
   constructor() { }
-  visibleSidebar: any;
   ngOnInit() {
-    this.sidebar();
-
+this.visibleSidebar = false;
+//  this.sidebar();
     }
-    sidebar() {
 
-this.visibleSidebar = true;
-this.ngOnInit();
-// console.log("dcsddsd");
+    sidebar() {
+      this.visibleSidebar = true;
  }
 
-
-    }
-
-
+}
