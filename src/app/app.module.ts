@@ -16,6 +16,8 @@ import { MessageService } from 'primeng/api';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SidebarModule} from 'primeng/sidebar';
 import { SidebarComponent } from './menu/sidebar/sidebar.component';
+import { ReversePipe } from './reverse.pipe';
+import { FilePipe } from './file.pipe';
 
 
 
@@ -28,6 +30,8 @@ import { SidebarComponent } from './menu/sidebar/sidebar.component';
     ContractorsComponent,
     MenuComponent,
     SidebarComponent,
+    ReversePipe,
+    FilePipe,
   ],
   imports: [
     BrowserModule,

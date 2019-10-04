@@ -16,22 +16,25 @@
           <th>Creadted Date</th>
           <th>Category Id</th>
           <th>Category Name</th>
+          <!-- <th>multiplication</th> -->
           <th>Action</th>
           <th>Action</th>
       </tr>
     <tbody *ngFor="let item of all_articles; let i=index">
       <tr>
         <td>{{item.articleId}}</td>
-        <td>{{item.articleName}}</td>
+        <td>{{item.articleName | file}}</td>
         <td>{{item.createdByName}}</td>
-        <td>{{item.createdDate}}</td>
+        <td>{{item.createdDate|date}}</td>
         <td>{{item.categoryId}}</td>
         <td>{{item.categoryName}}</td>
+        <!-- <td>{{2|file:10}}</td> -->
         <td><button class="btn btn-info btn-sm" (click)="onEditClick(Edit,i)" ><i class="fa fa-pencil"></i>Edit</button>&nbsp;&nbsp;</td>
         <td><button class="btn btn-secondary btn-sm" (click)="onReadClick(Read,item)" >ReadMore</button></td>
       </tr>
     </tbody>
   </table>
+
   <ngb-pagination  [collectionSize]="totalItem"  [maxSize]="5" [rotate]="true" [(page)]="Page"  (pageChange)="loadPage([Page])"  [boundaryLinks]="true"></ngb-pagination>
   <ng-template #Add let-modal>
     <br>
@@ -120,17 +123,26 @@
       </form>
     </ng-template>
     <ng-template #Read let-modal>
-        <br>
-        <h3 style="text-align: left">Read More</h3>
-        <div  class="container-fluid">
-        <div> <p>{{arrdata?.articleName}}</p></div>
-         <div><p>{{arrdata?.createdBy}}</p></div>
-         <div> <p [innerHTML]='arrdata?.content'></p></div>
-         <button class="btn btn-secondary btn-sm" type="button" (click)="modal.close('Save click')">close</button>
+      <br>
+      <div class="container">
+        <div class="bg-light">
+          <h4>Read More!</h4>
+          <p class=""><i class="fa fa fa-address-card-o"></i>&nbsp;&nbsp;<b>{{arrdata?.articleName}}</b></p>
+          <hr class="my-4">
+          <p><i class="fa fa fa-clock-o"></i>&nbsp;&nbsp; {{arrdata?.createdDate | date}}</p>
 
+          <p [innerHTML]=arrdata?.content></p>
         </div>
-        <br>
-      </ng-template>
+        <div class="container">
+          <div class="row">
+              <div class="col-xs-6 col-sm-4 col-md-6">
+                  <button class="btn btn-outline-secondary btn-sm" type="button" (click)="modal.close('Save click')">close</button>
+                </div>
+          </div>
+        </div>
+      </div>
+      <br>
+</ng-template>
 
 
 
