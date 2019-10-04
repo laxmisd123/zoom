@@ -5,14 +5,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ArticleService {
-url = 'https://7b88bccc.ngrok.io/api/KB/GetArticles?getall=0&categ=';
-url1 = 'https://7b88bccc.ngrok.io/api/KB/InsertUpdateKBAricles';
-url2 = 'https://7b88bccc.ngrok.io/api/KB/GetReadArticle?ArticleId=';
-paginate = 'https://7b88bccc.ngrok.io/api/KB/GetArticles?getall=0&categ=&';
-search = 'https://7b88bccc.ngrok.io/api/KB/GetArticles?getall=0&SearchString=';
+url = 'https://6c352f6a.ngrok.io/api/KB/GetArticles?getall=0&categ=';
+url1 = 'https://6c352f6a.ngrok.io/api/KB/InsertUpdateKBAricles';
+url2 = 'https://6c352f6a.ngrok.io/api/KB/GetReadArticle?ArticleId=';
+paginate = 'https://6c352f6a.ngrok.io/api/KB/GetArticles?getall=0&categ=&';
+search = 'https://6c352f6a.ngrok.io/api/KB/GetArticles?getall=0&SearchString=';
 concat: string;
 
-  constructor(private http: HttpClient) { }
+constructor(private http: HttpClient) { }
   getAllkbArticles() {
     return this.http.get(this.url);
   }
