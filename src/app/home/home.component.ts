@@ -59,14 +59,14 @@ export class HomeComponent implements OnInit {
       modifiedDate: new FormControl(null, Validators.required)
     });
 
-    this._data.getAllkbArticles().pipe(
-    map((data: Industry[]) => {
+    this._data.getAllkbArticles().subscribe(
+  (data: Industry[]) => {
         this.arr = data;
         console.log(this.arr);
         this.all_articles = this.arr['kbArticles'];
         console.log(this.all_articles);
       }
-    ));
+     );
     this.getPageInformation();
 
   }
