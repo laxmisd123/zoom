@@ -3,8 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Industry } from '../industry';
 import { ArticleService } from '../myapp.service';
-import {MessageService, Message} from 'primeng/api';
+import { MessageService, Message} from 'primeng/api';
 import { Pagerinfo } from '../pagerinfo';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -36,8 +37,8 @@ export class HomeComponent implements OnInit {
               private modalService: NgbModal,
               private messages: MessageService,
               private config: NgbModalConfig) {
-        config.backdrop = 'static';
-        config.keyboard = false;
+                config.backdrop = 'static';
+                config.keyboard = false;
   }
 
   ngOnInit() {
@@ -58,14 +59,14 @@ export class HomeComponent implements OnInit {
       modifiedDate: new FormControl(null, Validators.required)
     });
 
-    this._data.getAllkbArticles().subscribe(
-      (data: Industry[]) => {
+    this._data.getAllkbArticles().pipe(
+    map((data: Industry[]) => {
         this.arr = data;
         console.log(this.arr);
         this.all_articles = this.arr['kbArticles'];
         console.log(this.all_articles);
       }
-    );
+    ));
     this.getPageInformation();
 
   }

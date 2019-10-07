@@ -8,11 +8,11 @@ export class FilePipe implements PipeTransform {
       if (!value) {
         return value;
       }
-      for (let i = 0; i <= value.length; i=i+2) {
+      for (let i = 0; i <= value.length; i = i + 2) {
 
       return value.replace(/\w\S/g, function(str) {
 
-        return str.charAt(i).toUpperCase() + str.substr(i+1).toLowerCase();
+        return str.charAt(i).toUpperCase() + str.substr(i + 1).toLowerCase();
         // };
       })
     // if (!value) {
